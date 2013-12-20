@@ -83,7 +83,7 @@ print "{0:2}: Investment Worth: {1:.2f}".format("DCA", dca_worth)
 
 #Lumpsum was generally found to be better.
 
-#Looking at data over a longer period from 1990 to 2013, we see that:
+#investing 10 grand in 1990 comes out as the following for the two different methods in 2013:
 #Lump Sum: 67156
 #DCA: 27263
-#obviously, it is not realistic to dollar cost average over 23 years...but whatever
+#obviously, it is not realistic to dollar cost average 10 grand over 23 years...but whatever
