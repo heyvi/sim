@@ -86,3 +86,4 @@ print "{0:2}: Investment Worth: {1:.2f}".format("DCA", dca_worth)
 #Looking at data over a longer period from 1990 to 2013, we see that:
 #Lump Sum: 67156
 #DCA: 27263
+#obviously, it is not realistic to dollar cost average over 23 years...but whatever
