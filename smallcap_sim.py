@@ -43,7 +43,7 @@ shares_bought_lumpsum = investment_amount/lumpsum_purchase_price
 shares_bought_dca = 0
 reinvest_gap = datetime.timedelta(days=15)
 dca_invest_rate = investment_amount/((end_date-start_date).days/reinvest_gap.days)
-dca_invest_rate *= 1.05 #correction factor, conservative in this case
+#dca_invest_rate *= 1.05 #correction factor, conservative in this case
 
 dateProbe = start_date
 num_investments = 0
