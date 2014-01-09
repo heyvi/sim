@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Project 4: Supervised Learning </title>
+<link href="projects.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<body>
+<h2>Project 4: Supervised Learning</h2>
+
+
+<blockquote>
+    <center>
+    <img src="comic.jpg" width="600px" />
+    </br><i> - Rhymes with Orange &copy;</i>
+    </center>
+      <p><cite><center>
+        Choices so many<br>
+      If only something could help<br>
+      Go decision trees!</center></cite></p>
+</blockquote>
+
+<h3>Introduction</h3>
+<p>This project is intended to familiarize you with one of the standard approaches to classification problems, decision trees. You will code up decision tree learning and then apply it to several relatively simple problems. The hope is that, as you work on this project, you will come to understand the supervised learning process.</p>
+
+<h3>General Information</h3>
+<p>This project has two parts. &nbsp;In the first part, you will code up decision tree learning (in two ways) and test it on various data sets. &nbsp;In the second part, you will provide a writeup discussing the results. &nbsp;<br />
+<br />
+This project will be done in Python. Your submission should consist of your code and your writeup. For the code, it should all be in project4.py (attached below); follow the standard submission convention you used in projects 1-3. For the writeup, publish it as a pdf document and include it with your submission as a separate file. In addition we require you to implement command line calling convention (more on this later in the assignment). Please do not deviate from this.</p>
+<p><strong>Evaluation:</strong>&nbsp;Your code will be graded for technical correctness and performance on the given datasets. &nbsp;Your write up will be graded based on your interpretation of these results.&nbsp;</p>
+<p><strong>Academic Dishonesty:</strong><span class="Apple-converted-space">&nbsp;</span>We will be checking your code against other submissions in the class for logical redundancy. &nbsp;If you copy someone else's code and submit it with minor changes, we will know. These cheat detectors are quite hard to fool, so please don't try. We trust you all to submit your own work only;<span class="Apple-converted-space">&nbsp;</span><em>please</em><span class="Apple-converted-space">&nbsp;</span>don't let us down. If you do, we will pursue the strongest consequences available to us.</span></span></p>
+<p><strong>Getting Help:</strong><span class="Apple-converted-space">&nbsp;</span>You are not alone! If you find yourself stuck on something, contact the course staff for help either during Office Hours or over email/piazza. We want these projects to be rewarding and instructional, not frustrating and demoralizing. But, we don't know when or how to help unless you ask.</span></span></p>
+
+<h3>Part 1: Decision Tree Learning (60%)</h3>
+<p>A classification problem is a problem where you classify instances into classes based on their features. For example, given the features&nbsp;<em>length_gt_5</em>,&nbsp;<em>has_teeth</em>,&nbsp;<em>big_and_scary</em>, and&nbsp;<em>flies</em>, we classify into&nbsp;<em>monster</em>&nbsp;and&nbsp;<em>not_monster</em>.</p>
+<pre style="line-height: normal; ">
+length_gt_5=y, has_teeth=y, big_and_scary=y, flies=n --&gt; monster</pre>
+<pre style="line-height: normal; ">
+length_gt_5=n, has_teeth=n, big_and_scary=y, flies=y --&gt; monster</pre>
+<pre style="line-height: normal; ">
+length_gt_5=n, has_teeth=n, big_and_scary=n, flies=n --&gt; not_monster</pre>
+<pre style="line-height: normal; ">
+length_gt_5=n, has_teeth=n, big_and_scary=y, flies=n --&gt; not_monster</pre>
+<pre style="line-height: normal; ">
+...</pre>
+<p>Other possible classification problems would include &quot;Should I date this person or not?&quot; or &quot;Is this a good investment?&quot; or &quot;Animal or not?&quot; or &quot;Is this the picture of a man or a woman?&quot;</p>
+<p>A classification problem consists of four variables:</p>
+<ul type="disc">
+    <li class="MsoNormal"><tt><span style="font-size: 10pt; ">*training-examples*</span></tt>&nbsp;- an ordered list of training examples, where each example is an&nbsp;<em>n</em>-dimensional vector (i.e., use&nbsp;<tt><span style="font-size: 10pt; ">make-array</span></tt>&nbsp;or&nbsp;<tt><span style="font-size: 10pt; ">vector</span></tt>&nbsp;to create these; you can see how it's done in&nbsp;<tt><span style="font-size: 10pt; ">project4.py</span></tt>).</li>
+    <li class="MsoNormal"><tt><span style="font-size: 10pt; ">*training-classes*</span></tt>&nbsp;- a corresponding ordered list of classification labels, where each label is&nbsp;<tt><span style="font-size: 10pt; ">t</span></tt>&nbsp;(in the class) or&nbsp;<tt><span style="font-size: 10pt; ">nil</span></tt>&nbsp;(not in the class). These should be in the exact same order as the training examples.</li>
+    <li class="MsoNormal"><tt><span style="font-size: 10pt; ">*test-examples*</span></tt>&nbsp;- similar to&nbsp;<tt><span style="font-size: 10pt; ">*training-examples*</span></tt>&nbsp;in form, but used strictly for testing purposes.</li>
+    <li class="MsoNormal"><tt><span style="font-size: 10pt; ">*test-classes*</span></tt>&nbsp;- similar to&nbsp;<tt><span style="font-size: 10pt; ">*training-classes*</span></tt>&nbsp;in form, but used to evaluate the results of running the algorithm on&nbsp;<tt><span style="font-size: 10pt; ">*test-examples*</span></tt>.</li>
+</ul>
+<p><strong style="line-height: 15px; "><em>Part 1(a): </em></strong>&nbsp;Implement decision tree learning with an information gain criteria for selecting the next attribute in the tree, as described in detail in Russell &amp; Novrig 18.3.</p>
+<p>For testing purposes, we have provided two datasets, which are in the format described above. The datasets are found in&nbsp;<tt><span style="font-size: 10pt; ">project4.py</span></tt>. Both data sets are binary classification tasks with binary attributes, which means that you only have to implement binary classification for decision trees. Note that the format of the data determines the inputs to your decision tree algorithm, which should follow the general pattern of supervised learning. You are responsible for designing the data structures and functions required to implement decision tree learning on these data sets.</p>
+<p>Additionally, we provide two more extra credit data sets that are binary classification tasks with numeric attributes. For your convenience, and because they have only two attributes, we have graphed data sets #3-4:</p>
+<p>Data Set #3:<br />
+<img alt="" height="285" src="Dataset3.png" width="479" /><br />
+Data Set #4:<br />
+<img alt="" height="284" src="Dataset4.png" width="474" /></p>
+<p>Your algorithm should work on data sets #1-2 for full credit. Note that data sets #3-4 are extra credit. You can ignore data sets #5-6. You will be responsible for coming up with a way to tackle this for extra credit (10% of this project's grade), but to receive this extra credit, your code must work for BOTH sets (3 and 4).</p>
+<p>Please provide accuracy statistics for your algorithm on the data sets you run them on. WE WILL BE CHECKING THESE AND GRADING YOU BASED ON IT. An accuracy statistic is defined as the percentage of examples the algorithm classified correctly. You should provide accuracy statistics for BOTH the training and testing examples of ALL the data sets.</p>
+<p>In terms of coding conventions, you are free to deviate from the &quot;framework&quot; we provided in project4.py. However, your code must run from the command line with arguments for testing and training data, and which learning method. The format for arguments should be [training]&nbsp;[testing]&nbsp;[method]. Each dataset should be called train# or test#. To use training set 1, test set 1, and information gain, for example, this is how the command line should appear:</p>
+<p><em>python project4.py train1 test1 infogain</em></p>
+<p>To use training set 2, test set 2, and the Gini index the command to run your code should look like this:</p>
+<p><em>python project4.py train2 test2 gini</em></p>
+<p>Note that the data sets we'll use for testing your implementation will correspond to the same training and testing sets you're given.  Feel free to use any of the utility functions, but make sure your implementation compiles or else we won't be able to run it and you will have points taken off. DO NOT rename the command line arguments or change the calling conventions.</p>
+<p></p>
+<div>
+<p><strong><em>Part 1(b): &nbsp;</em></strong>Now that you have completed the standard decision tree learning approach, you will now implement&nbsp;another mechanism for splitting attributes, called the GINI index.</p>
+<p>The gini index function can be used to evaluate the goodness of all the potential split points along all the attributes. Consider a dataset S consisting of n records, each belonging to one of the c classes. The gini index for the set S is defined as:</p>
+<p class="p2"><img alt="" height="84" src="gini1.jpg" width="216" />&nbsp;</p>
+<p>where p<span class="s1"><sub>j</sub></span> is the relative frequency of class j in S. If S is partitioned into two subsets S<span class="s1"><sub>1</sub></span> and S<span class="s1"><sub>2</sub></span>, the index of the partitioned data can be obtained by:</p>
+<p>&nbsp;<img alt="" height="64" src="gini2.jpg" width="400" /><img alt="" height="0" src="gini2.jpg" width="0" />&nbsp;</p>
+<p>where n<span class="s1"><sub>1</sub></span> and n<span class="s1"><sub>2</sub></span> are the number of examples of S<span class="s1"><sub>1</sub></span> and S<span class="s1"><sub>2</sub></span>, respectively, and cs is the splitting criterion. Here the attribute with the minimum gini index is chosen as the best attribute to split.&nbsp;<br />
+<br />
+Details are exactly the same as part a:&nbsp;Your algorithm should work on data sets #1-2 for full credit. Note that data sets #3-4 are extra credit. You can ignore data sets #5-6. You will be responsible for coming up with a way to tackle this for extra credit (10% of this project's grade), but to receive this extra credit, your code must work for BOTH sets (3 and 4).<br />
+<br />
+Please provide accuracy statistics for your algorithm on the data sets you run them on. WE WILL BE CHECKING THESE AND GRADING YOU BASED ON IT. An accuracy statistic is defined as the percentage of examples the algorithm classified correctly. You should provide accuracy statistics for BOTH the training and testing examples of ALL the data sets.&nbsp;<br />
+&nbsp;</p>
+</div>
+<h3>Part II: Analysis (40%)&nbsp;</span></h3>
+<p>The analysis should be provided in 1-2 paragraphs. We are not looking for a novel but we expect something more than a few sentences. The submission should be in pdf format, titled analysis.pdf. Here are the questions it should answer:</p>
+<ul type="disc">
+    <li class="MsoNormal">Accuracy statistics and tree size regarding the two data sets (see above).</li>
+    <li class="MsoNormal">For each data set and ranking algorithm, describe why decision tree learning performed as it did. &nbsp;Please be specific and justify your claims (ie: if you say there was not enough training data for data set X, what makes you think so?).</li>
+</ul>
+
+<h3>Submission Guidelines&nbsp;</span></h3>
+<p>
+  Do not rename our files, do not zip the files, do not leave debugging statements in your code. </br></br>
+  Only submit these files:
+</p>
+<ul type="disc">
+	<li class="MsoNormal">project4.py</li>
+	<li class="MsoNormal">analysis.pdf</li>
+</u1>
