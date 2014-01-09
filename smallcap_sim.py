@@ -43,7 +43,7 @@ shares_bought_lumpsum = investment_amount/lumpsum_purchase_price
 shares_bought_dca = 0
 reinvest_gap = datetime.timedelta(days=15)
 dca_invest_rate = investment_amount/((end_date-start_date).days/reinvest_gap.days)
-dca_invest_rate *= 1.05 #correction factor, conservative in this case
+#dca_invest_rate *= 1.05 #correction factor, conservative in this case
 
 dateProbe = start_date
 num_investments = 0
@@ -83,6 +83,7 @@ print "{0:2}: Investment Worth: {1:.2f}".format("DCA", dca_worth)
 
 #Lumpsum was generally found to be better.
 
-#Looking at data over a longer period from 1990 to 2013, we see that:
+#investing 10 grand in 1990 comes out as the following for the two different methods in 2013:
 #Lump Sum: 67156
 #DCA: 27263
+#obviously, it is not realistic to dollar cost average 10 grand over 23 years...but whatever
