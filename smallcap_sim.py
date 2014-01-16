@@ -75,6 +75,8 @@ dca_worth = shares_bought_dca * current_price
 dca_remainder = investment_amount - amt_invested
 dca_worth = dca_worth + dca_remainder
 
+#{arg num : min char width}
+
 print("DCA STATS\nNum Investments : {0}\nAmt Invested:{1}".format(num_investments, amt_invested))
 print "{0:2}: Shares Bought: {1:.2f}".format("Lumpsum", shares_bought_lumpsum)
 print "{0:2}: Shares Bought: {1:.2f}".format("DCA", shares_bought_dca)
